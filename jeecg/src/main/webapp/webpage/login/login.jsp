@@ -121,7 +121,7 @@
                 </form>
               </div>
             </div>
-            <div class="center"><h4 class="blue" id="id-company-text">&copy; JEECG版权所有 v_3.7.1</h4></div>
+            <div class="center"><h4 class="blue" id="id-company-text">&copy; 版权所有 @计算机科学学院@15计算机科学与技术师范</h4></div>
             <div class="navbar-fixed-top align-right">
               <br />
               &nbsp;
@@ -225,33 +225,33 @@
       success : function(data) {
         var d = $.parseJSON(data);
         if (d.success) {
-          if (d.attributes.orgNum > 1) {
-          	  //用户拥有多个部门，需选择部门进行登录
-        	  var title, okButton;
-              if($("#langCode").val() == 'en') {
-                title = "Please select Org";
-                okButton = "Ok";
-              } else {
-                title = "请选择组织机构";
-                okButton = "确定";
-              }
-            $.dialog({
-              id: 'LHG1976D',
-              title: title,
-              max: false,
-              min: false,
-              drag: false,
-              resize: false,
-              content: 'url:userController.do?userOrgSelect&userId=' + d.attributes.user.id,
-              lock:true,
-              button : [ {
-                name : okButton,
-                focus : true,
-                callback : function() {
-                  iframe = this.iframe.contentWindow;
-                  var orgId = $('#orgId', iframe.document).val();
+//           if (d.attributes.orgNum > 1) {
+//           	  //用户拥有多个部门，需选择部门进行登录
+//         	  var title, okButton;
+//               if($("#langCode").val() == 'en') {
+//                 title = "Please select Org";
+//                 okButton = "Ok";
+//               } else {
+//                 title = "请选择组织机构";
+//                 okButton = "确定";
+//               }
+//             $.dialog({
+//               id: 'LHG1976D',
+//               title: title,
+//               max: false,
+//               min: false,
+//               drag: false,
+//               resize: false,
+//               content: 'url:userController.do?userOrgSelect&userId=' + d.attributes.user.id,
+//               lock:true,
+//               button : [ {
+//                 name : okButton,
+//                 focus : true,
+//                 callback : function() {
+//                   iframe = this.iframe.contentWindow;
+//                   var orgId = $('#orgId', iframe.document).val();
 
-                  formData['orgId'] = orgId ? orgId : "";
+//                   formData['orgId'] = orgId ? orgId : "";
                   $.ajax({
               		async : false,
               		cache : false,
@@ -265,17 +265,21 @@
               		}
                   });
 
-                  this.close();
-                  return false;
-                }
-              }],
-              close: function(){
-                setTimeout("window.location.href='"+actionurl+"'", 10);
-              }
-            });
-          } else {
-            window.location.href = actionurl;
-          }
+                 // this.close();
+                 // return false;
+               // }
+              //}],
+             // close: function(){
+            //    setTimeout("window.location.href='"+actionurl+"'", 10);
+            //  }
+          // });
+         // } else {
+	     //   console.log(actionurl);
+         //   window.location.href = actionurl;
+            
+        //  }
+          
+         // window.location.href = actionurl;
        } else {
 			showErrorMsg(d.msg);
 

@@ -71,9 +71,9 @@ public class BaseTag extends JeecgTag {
 				}
 			}
 		}
-//		long end = System.currentTimeMillis();
+//	    long end = System.currentTimeMillis();
 //        log.info("=============================== BaseTag 结束时间:"+sdf.format(new Date())+"==============================");
-//        log.info("================================ BaseTag 耗时:"+(end-start)+"ms==============================");
+//       log.info("================================ BaseTag 耗时:"+(end-start)+"ms==============================");
 		return EVAL_PAGE;
 	}
 

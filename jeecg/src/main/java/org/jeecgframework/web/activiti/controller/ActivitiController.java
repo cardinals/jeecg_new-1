@@ -49,6 +49,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ActivitiController extends BaseController{
 
 	
+	
 	@Autowired
 	protected RepositoryService repositoryService;
 	

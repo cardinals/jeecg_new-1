@@ -616,6 +616,13 @@ public class UserController extends BaseController {
 	@RequestMapping(params = "saveUser")
 	@ResponseBody
 	public AjaxJson saveUser(HttpServletRequest req, TSUser user) {
+		System.out.println("--------------------------------------saveUser");
+		String orgIds = oConvertUtils.getString(req.getParameter("orgIds"));
+		List<String> orgIdList = extractIdListByComma(orgIds);
+		String orgId = "";
+		for(String string: orgIdList) {
+			orgId = string;
+		}
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		// 得到用户的角色
@@ -624,6 +631,7 @@ public class UserController extends BaseController {
 		if (StringUtil.isNotEmpty(user.getId())) {
 			TSUser users = systemService.getEntity(TSUser.class, user.getId());
 			users.setEmail(user.getEmail());
+			users.setDepartid(orgId);
 			users.setOfficePhone(user.getOfficePhone());
 			users.setMobilePhone(user.getMobilePhone());
 			users.setDevFlag(user.getDevFlag());
@@ -703,6 +711,7 @@ public class UserController extends BaseController {
 			TSRole role = systemService.getEntity(TSRole.class, roleids[i]);
 			rUser.setTSRole(role);
 			rUser.setTSUser(user);
+			rUser.setDepartid(user.getDepartid());
 			systemService.save(rUser);
 
 		}
