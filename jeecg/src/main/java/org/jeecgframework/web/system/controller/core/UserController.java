@@ -64,7 +64,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-
 /**
  * @ClassName: UserController
  * @Description: TODO(用户管理处理类)
@@ -616,7 +615,6 @@ public class UserController extends BaseController {
 	@RequestMapping(params = "saveUser")
 	@ResponseBody
 	public AjaxJson saveUser(HttpServletRequest req, TSUser user) {
-		System.out.println("--------------------------------------saveUser");
 		String orgIds = oConvertUtils.getString(req.getParameter("orgIds"));
 		List<String> orgIdList = extractIdListByComma(orgIds);
 		String orgId = "";
@@ -636,6 +634,7 @@ public class UserController extends BaseController {
 			users.setMobilePhone(user.getMobilePhone());
 			users.setDevFlag(user.getDevFlag());
 
+			
             systemService.executeSql("delete from t_s_user_org where user_id=?", user.getId());
             saveUserOrgList(req, user);
 //            users.setTSDepart(user.getTSDepart());
@@ -657,9 +656,10 @@ public class UserController extends BaseController {
 				message = "用户: " + users.getUserName() + "已经存在";
 			} else {
 				user.setPassword(PasswordUtil.encrypt(user.getUserName(), password, PasswordUtil.getStaticSalt()));
-//				if (user.getTSDepart().equals("")) {
-//					user.setTSDepart(null);
+//				if (user.getDepartid().equals("")) {
+//					user.setDepartid(orgId);
 //				}
+				user.setDepartid(orgId);
 				user.setStatus(Globals.User_Normal);
 				user.setDeleteFlag(Globals.Delete_Normal);
 				systemService.save(user);
@@ -685,13 +685,11 @@ public class UserController extends BaseController {
      */
     private void saveUserOrgList(HttpServletRequest request, TSUser user) {
         String orgIds = oConvertUtils.getString(request.getParameter("orgIds"));
-
         List<TSUserOrg> userOrgList = new ArrayList<TSUserOrg>();
         List<String> orgIdList = extractIdListByComma(orgIds);
         for (String orgId : orgIdList) {
             TSDepart depart = new TSDepart();
             depart.setId(orgId);
-
             TSUserOrg userOrg = new TSUserOrg();
             userOrg.setTsUser(user);
             userOrg.setTsDepart(depart);
@@ -709,9 +707,10 @@ public class UserController extends BaseController {
 		for (int i = 0; i < roleids.length; i++) {
 			TSRoleUser rUser = new TSRoleUser();
 			TSRole role = systemService.getEntity(TSRole.class, roleids[i]);
+			TSDepart depart = systemService.getEntity(TSDepart.class, user.getDepartid());
 			rUser.setTSRole(role);
 			rUser.setTSUser(user);
-			rUser.setDepartid(user.getDepartid());
+			rUser.setTSDepart(depart);
 			systemService.save(rUser);
 
 		}

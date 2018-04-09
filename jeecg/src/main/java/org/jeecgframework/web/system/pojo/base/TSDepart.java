@@ -133,6 +133,6 @@ public class TSDepart extends IdEntity implements java.io.Serializable {
 		this.departOrder = departOrder;
 	}
 	
-	
+
 	
 }

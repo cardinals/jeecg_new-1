@@ -21,7 +21,7 @@ import org.jeecgframework.core.common.entity.IdEntity;
 public class TSRoleUser extends IdEntity implements java.io.Serializable {
 	private TSUser TSUser;
 	private TSRole TSRole;
-	private String departid;
+	private TSDepart TSDepart;
 	
 	
 
@@ -44,17 +44,19 @@ public class TSRoleUser extends IdEntity implements java.io.Serializable {
 	public void setTSRole(TSRole TSRole) {
 		this.TSRole = TSRole;
 	}
-
-	public String getDepartid() {
-		return departid;
-	}
-
-	public void setDepartid(String departid) {
-		this.departid = departid;
-	}
     
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "departid")
+	public TSDepart getTSDepart() {
+		return TSDepart;
+	}
+
+	public void setTSDepart(TSDepart tSDepart) {
+		TSDepart = tSDepart;
+	}
 
 	
-	
+    
+    
 
 }

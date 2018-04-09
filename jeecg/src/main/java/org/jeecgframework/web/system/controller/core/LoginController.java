@@ -199,17 +199,17 @@ public class LoginController extends BaseController {
 	 */
 	private void saveLoginSuccessInfo(HttpServletRequest req, TSUser user) {
 		String message = null;
-		//TSDepart currentDepart = systemService.get(TSDepart.class, orgId);
-		//user.setCurrentDepart(currentDepart);
+		TSDepart currentDepart = systemService.get(TSDepart.class, user.getDepartid());
+		user.setCurrentDepart(currentDepart);
 
 		HttpSession session = ContextHolderUtils.getSession();
-		System.out.println("---------------------------------------------");
+
 
 		//user.setDepartid(orgId);
 
 		session.setAttribute(ResourceUtil.LOCAL_CLINET_USER, user);
 		message = mutiLangService.getLang("common.user") + ": " + user.getUserName() + "["
-			+ "]" + mutiLangService.getLang("common.login.success");
+			+currentDepart.getDepartname()+ "]" + mutiLangService.getLang("common.login.success");
         //+ currentDepart.getDepartname() +
 		String browserType = "";
 		Cookie[] cookies = req.getCookies();
