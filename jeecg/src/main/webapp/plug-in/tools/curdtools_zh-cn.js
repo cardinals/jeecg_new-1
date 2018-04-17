@@ -401,6 +401,7 @@ function alertTip(msg,title) {
  * @param saveurl
  */
 function createwindow(title, addurl,width,height) {
+	console.log("hello cn");
 	width = width?width:700;
 	height = height?height:400;
 	if(width=="100%" || height=="100%"){
