@@ -343,11 +343,12 @@ public class FormValidationTag extends JeecgTag {
 					sb.append("var win = frameElement.api.opener;");
 					//先判断是否成功，成功再刷新父页面，否则return false    
 					// 如果不成功，返回值接受使用data.msg. 原有的data.responseText会报null 
-					sb.append("if(data.success==true){frameElement.api.close();win.tip(data.msg);}else{if(data.responseText==''||data.responseText==undefined){$.messager.alert('错误', data.msg);$.Hidemsg();}else{try{var emsg = data.responseText.substring(data.responseText.indexOf('错误描述'),data.responseText.indexOf('错误信息')); $.messager.alert('错误',emsg);$.Hidemsg();}catch(ex){$.messager.alert('错误',data.responseText+\"\");$.Hidemsg();}} return false;}");
-					//
+					sb.append("if(data.success==true){frameElement.api.close(); win.tip(data.msg);}else{if(data.responseText==''||data.responseText==undefined){$.messager.alert('错误', data.msg);$.Hidemsg();}else{try{var emsg = data.responseText.substring(data.responseText.indexOf('错误描述'),data.responseText.indexOf('错误信息')); $.messager.alert('错误',emsg);$.Hidemsg();}catch(ex){$.messager.alert('错误',data.responseText+\"\");$.Hidemsg();}} return false;}");
+				
 					if (refresh) {
 						sb.append("win.reloadTable();");
 					}
+					
 					if (StringUtil.isNotEmpty(callback)) {
 						sb.append("win."+ callback + "(data);");
 					}

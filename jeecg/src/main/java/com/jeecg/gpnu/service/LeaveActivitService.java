@@ -1,5 +1,6 @@
 package com.jeecg.gpnu.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -16,9 +17,15 @@ public interface LeaveActivitService {
 
 	 public LeaveInfoEntity get(String businessKey);
 	 
-	 public LeaveInfoEntity findUseridByProcessInstanceId(String processInstanceId);
+	 public LeaveInfoEntity findLeaveInfoEntityByProId(String processInstanceId);
 		
 	 public List<TSDepart> findDepartListByUserId(String userId);
 
 	 public TSRoleUser FindRoleByUserId(String userId);
+	 
+	 public void UpdateBpmStatus(String statu,String processInstanceId);
+
+	 public void UpdateComment(String comment, String processInstanceId);
+
+	public void UpdateConcleLeave(Date date, String processInstanceId);
 }

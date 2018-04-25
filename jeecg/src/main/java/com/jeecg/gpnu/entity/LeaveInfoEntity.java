@@ -101,7 +101,8 @@ public class LeaveInfoEntity implements java.io.Serializable {
 	/**销假时间*/
 	@Excel(name="销假时间",width=15,format = "yyyy-MM-dd")
 	private java.util.Date cancelLeave;
-	private Task task;
+	
+    private Task task;
 	
 	/**
 	 *方法: 取得java.lang.String
@@ -110,11 +111,11 @@ public class LeaveInfoEntity implements java.io.Serializable {
 	@Id
 	@GeneratedValue(generator = "paymentableGenerator")
 	@GenericGenerator(name = "paymentableGenerator", strategy = "uuid")
-
 	@Column(name ="ID",nullable=false,length=36)
 	public java.lang.String getId(){
 		return this.id;
 	}
+	
 
 	/**
 	 *方法: 设置java.lang.String
@@ -566,8 +567,29 @@ public class LeaveInfoEntity implements java.io.Serializable {
 		this.cancelLeave = cancelLeave;
 	}
 
+
+
+
 	public void setTask(Task task) {
 		// TODO Auto-generated method stub
 		this.task = task;
 	}
+
+
+	@Override
+	public String toString() {
+		return "LeaveInfoEntity [id=" + id + ", createName=" + createName + ", createBy=" + createBy + ", createDate="
+				+ createDate + ", updateName=" + updateName + ", updateBy=" + updateBy + ", updateDate=" + updateDate
+				+ ", sysOrgCode=" + sysOrgCode + ", sysCompanyCode=" + sysCompanyCode + ", bpmStatus=" + bpmStatus
+				+ ", name=" + name + ", institudeName=" + institudeName + ", professionName=" + professionName
+				+ ", gradeName=" + gradeName + ", className=" + className + ", userid=" + userid
+				+ ", processInstanceId=" + processInstanceId + ", leaveDay=" + leaveDay + ", leaveReason=" + leaveReason
+				+ ", startTime=" + startTime + ", endTime=" + endTime + ", classNumber=" + classNumber
+				+ ", studentNumber=" + studentNumber + ", applyTime=" + applyTime + ", instructorComment="
+				+ instructorComment + ", institudeComment=" + institudeComment + ", cancelLeave=" + cancelLeave
+				+ ", task=" + task + "]";
+	}
+	
+	
+
 }

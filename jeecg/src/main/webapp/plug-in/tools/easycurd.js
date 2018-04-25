@@ -149,6 +149,9 @@ function openwin(title, addurl, width, height) {
 		}
 	});
 }
+
+
+
 /**
  * 执行询问方法
  * 

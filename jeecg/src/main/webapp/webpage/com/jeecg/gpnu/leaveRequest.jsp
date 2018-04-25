@@ -7,7 +7,7 @@
   <t:base type="jquery,easyui,tools,DatePicker"></t:base>
  </head>
  <body>
-  <t:formvalid formid="formobj" dialog="true" usePlugin="password" layout="table" action="leaveInfoController.do?doAdd" >
+  <t:formvalid formid="formobj" dialog="true" usePlugin="password" layout="table" action="leaveActivitController/start.do" >
 					<input id="id" name="id" type="hidden" value="${leaveInfoPage.id}"/>
 		<table style="width: 600px;" cellpadding="0" cellspacing="1" class="formtable">
 				<tr>
@@ -186,6 +186,9 @@
 							<label class="Validform_label" style="display: none;">院级领导意见</label>
 						</td>
 					</tr>
+					<div>
+					    <input type="submit" value="申请"/>
+					</div>
 			</table>
 		</t:formvalid>
  </body>

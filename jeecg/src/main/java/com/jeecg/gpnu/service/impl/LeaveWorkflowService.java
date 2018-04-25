@@ -49,12 +49,12 @@ public class LeaveWorkflowService {
     public ProcessInstance startWorkflow(LeaveInfoEntity entity,TSUser user, Map<String, Object> variables) {
         if (entity.getId() == null) {
             entity.setUserid(user.getId());
-            //entity.setApplytime(new Date());
+            entity.setApplyTime(new Date());
         }
         List<TSDepart> tsDeparts = leaveService.findDepartListByUserId(user.getId());
         entity.setName(user.getRealName());
         entity.setClassName(tsDeparts.get(0).getDepartname());
-        entity.setCreateName(tsDeparts.get(1).getDepartname());
+        entity.setGradeName(tsDeparts.get(1).getDepartname());
         entity.setProfessionName((tsDeparts.get(2).getDepartname()));
         entity.setInstitudeName(tsDeparts.get(3).getDepartname());
         

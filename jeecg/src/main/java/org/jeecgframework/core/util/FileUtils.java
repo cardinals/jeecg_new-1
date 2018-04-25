@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import org.apache.commons.lang3.StringUtils;
@@ -194,4 +195,26 @@ public class FileUtils {
         }
         return returnFileName;
     }
+	
+	public static void  copyInputStreamToFile(InputStream inputStream,File outputFile) {
+		FileOutputStream fos = null;
+		int temp = 0;  
+		byte[] buf = new byte[10240];
+        try {  
+        	fos = new FileOutputStream(outputFile);
+        	while((temp = inputStream.read(buf))!=-1){   
+        		fos.write(buf, 0, temp);   
+            }   
+        } catch (IOException e) {  
+            e.printStackTrace();  
+        } finally{
+            try {
+            	inputStream.close();
+            	fos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+        } 
+		
+	}
 }

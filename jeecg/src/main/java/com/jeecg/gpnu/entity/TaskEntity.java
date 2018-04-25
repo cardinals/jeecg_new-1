@@ -3,17 +3,40 @@ package com.jeecg.gpnu.entity;
 import java.util.Date;
 
 public class TaskEntity {
-	
+
 	private String id;
-	
-	private String userId;
+
+	private String taskId;
+
+	private String userid;
 	
 	private String userName;
-     
-    private String processInstanceId;
-    
-    private Date createTime;
-    
+
+	private String processInstanceId;
+
+	private Date createTime;
+
+	private String bpmStatus;
+
+	private String comment;
+	
+	
+
+	public String getTaskId() {
+		return taskId;
+	}
+
+	public void setTaskId(String taskId) {
+		this.taskId = taskId;
+	}
+
+	public String getBpmStatus() {
+		return bpmStatus;
+	}
+
+	public void setBpmStatus(String bpmStatus) {
+		this.bpmStatus = bpmStatus;
+	}
 
 	public Date getCreateTime() {
 		return createTime;
@@ -23,15 +46,14 @@ public class TaskEntity {
 		this.createTime = date;
 	}
 
-	   
-	public String getUserId() {
-		return userId;
+	
+	public String getUserid() {
+		return userid;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
-
 
 	public String getId() {
 		return id;
@@ -56,7 +78,15 @@ public class TaskEntity {
 	public void setProcessInstanceId(String processInstanceId) {
 		this.processInstanceId = processInstanceId;
 	}
-	
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+    
 	
 	
 }

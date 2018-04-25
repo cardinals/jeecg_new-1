@@ -1,5 +1,6 @@
 package com.jeecg.gpnu.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.activiti.engine.runtime.ProcessInstance;
@@ -35,9 +36,9 @@ public class LeaveActivitServiceImple implements LeaveActivitService{
 	}
 
 	@Override
-	public LeaveInfoEntity findUseridByProcessInstanceId(String processInstanceId) {
+	public LeaveInfoEntity findLeaveInfoEntityByProId(String processInstanceId) {
 		// TODO Auto-generated method stub
-		return leaveDao.findUseridByProcessInstanceId(processInstanceId);
+		return leaveDao.findLeaveInfoEntityByProId(processInstanceId);
 	}
 
 	@Override
@@ -50,6 +51,25 @@ public class LeaveActivitServiceImple implements LeaveActivitService{
 	public TSRoleUser FindRoleByUserId(String userId) {
 		// TODO Auto-generated method stub
 		return leaveDao.FindRoleByUserId(userId);
+	}
+
+	@Override
+	public void UpdateBpmStatus(String statu,String processInstanceId) {
+		// TODO Auto-generated method stub
+		leaveDao.UpdateBpmStatus(statu,processInstanceId);
+	}
+
+	@Override
+	public void UpdateComment(String comment, String processInstanceId) {
+		// TODO Auto-generated method stub
+		leaveDao.UpdateComment(comment, processInstanceId);
+	}
+
+
+	@Override
+	public void UpdateConcleLeave(Date concleLeave, String processInstanceId) {
+		// TODO Auto-generated method stub
+		leaveDao.UpdateConcleLeave(concleLeave, processInstanceId);
 	}
 
 	

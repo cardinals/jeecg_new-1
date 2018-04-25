@@ -3,6 +3,7 @@ package com.jeecg.gpnu.dao.imple;
 import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.fop.fo.properties.VoiceFamilyMaker;
@@ -56,7 +57,7 @@ public class LeaveActivitDaoImple implements LeaveActivitDao {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public LeaveInfoEntity findUseridByProcessInstanceId(String processInstanceId) {
+	public LeaveInfoEntity findLeaveInfoEntityByProId(String processInstanceId) {
 		// TODO Auto-generated method stub
 		String hql = "FROM LeaveInfoEntity WHERE processInstanceId=:processInstanceId";
 		List<LeaveInfoEntity> leaveInfoEntities = sessionFactory.getCurrentSession().createQuery(hql)
@@ -103,4 +104,40 @@ public class LeaveActivitDaoImple implements LeaveActivitDao {
 		
 	}
 
+	@Override
+	public void UpdateBpmStatus(String statu,String processInstanceId) {
+		// TODO Auto-generated method stub
+		 String hql = "update LeaveInfoEntity le set le.bpmStatus =:statu where le.processInstanceId =:processInstanceId";
+		 
+		 sessionFactory.getCurrentSession().createQuery(hql)
+		                                   .setString("statu", statu)
+		                                   .setString("processInstanceId", processInstanceId)
+		                                   .executeUpdate();
+	}
+    
+	@Override
+	public void UpdateComment(String comment,String processInstanceId) {
+		// TODO Auto-generated method stub
+		
+		
+		 String hql = "update LeaveInfoEntity le set le.instructorComment =:comment  where le.processInstanceId =:processInstanceId";
+		 
+		 sessionFactory.getCurrentSession().createQuery(hql)
+		                                   .setString("comment", comment)
+		                                   .setString("processInstanceId", processInstanceId)
+		                                   .executeUpdate();
+	}
+
+	@Override
+	public void UpdateConcleLeave(Date concleLeave, String processInstanceId) {
+		// TODO Auto-generated method stub
+         String hql = "update LeaveInfoEntity le set le.cancelLeave =:leave where le.processInstanceId =:processInstanceId";
+		 
+		 sessionFactory.getCurrentSession().createQuery(hql)
+		                                   .setDate("leave", concleLeave)
+		                                   .setString("processInstanceId", processInstanceId)
+		                                   .executeUpdate();
+	}
+    
+	
 }

@@ -15,6 +15,7 @@ try{
 }catch(e){}
 
 
+
 //﻿var jq = jQuery.noConflict();
 /**
  * 增删改工具栏
@@ -401,7 +402,6 @@ function alertTip(msg,title) {
  * @param saveurl
  */
 function createwindow(title, addurl,width,height) {
-	console.log("hello cn");
 	width = width?width:700;
 	height = height?height:400;
 	if(width=="100%" || height=="100%"){
@@ -452,6 +452,69 @@ function createwindow(title, addurl,width,height) {
     //--author：JueYue---------date：20140427---------for：弹出bug修改,设置了zindex()函数
 	
 }
+//======================================================
+
+function createApplyWindow(title, addurl,width,height) {
+	width = width?width:700;
+	height = height?height:400;
+	if(width=="100%" || height=="100%"){
+		width = window.top.document.body.offsetWidth;
+		height =window.top.document.body.offsetHeight-100;
+	}
+    //--author：JueYue---------date：20140427---------for：弹出bug修改,设置了zindex()函数
+	if(typeof(windowapi) == 'undefined'){
+		$.dialog({
+			content: 'url:'+addurl,
+			lock : true,
+			zIndex: getzIndex(),
+			width:width,
+			height:height,
+			title:title,
+			opacity : 0.3,
+			cache:false,
+		    ok: function(){
+		    	iframe = this.iframe.contentWindow;
+		    	saveObj();
+				return false;
+		    },
+		    cancelVal: '关闭',
+		    cancel: true /*为true等价于function(){}*/
+		});
+	}else{
+
+		/*W.*/$.dialog({//使用W，即为使用顶级页面作为openner，造成打开的次级窗口获取不到关联的主窗口
+			content: 'url:'+addurl,
+			lock : true,
+			width:width,
+			zIndex:getzIndex(),
+			height:height,
+			parent:windowapi,
+			title:title,
+			opacity : 0.3,
+			cache:false,
+		    ok: function(){
+		    	iframe = this.iframe.contentWindow;
+		    	saveObj();
+				return false;
+		    },
+		    cancelVal: '关闭',
+		    cancel: true /*为true等价于function(){}*/
+		});
+
+	}
+    //--author：JueYue---------date：20140427---------for：弹出bug修改,设置了zindex()函数
+	
+}
+
+
+
+
+
+
+
+
+
+//=========================================================
 /**
  * 创建上传页面窗口
  * 
@@ -684,6 +747,7 @@ function createdialog(title, content, url,name) {
  */
 function saveObj() {
 	$('#btn_sub', iframe.document).click();
+	
 }
 
 /**
@@ -894,13 +958,13 @@ function setCookie(c_name, value, expiredays){
 	document.cookie=c_name+ "=" + escape(value) + ((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
 }
 
-function createTabId(str){
-　　　　var val="";
-　　　　for(var i = 0; i < str.length; i++){
-　　　　　　　　val += str.charCodeAt(i).toString(16);
-　　　　}
-　　　　return val;
-　　}
+//function createTabId(str){
+//　　　　var val="";
+//　　　　for(var i = 0; i < str.length; i++){
+//　　　　　　　　val += str.charCodeAt(i).toString(16);
+//　　　　}
+//　　　　return val;
+//}
 // 添加标签
 function addOneTab(subtitle, url, icon) {
 	var indexStyle = getCookie("JEECGINDEXSTYLE");

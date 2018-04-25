@@ -1,5 +1,6 @@
 package com.jeecg.gpnu.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.jeecgframework.web.activiti.entity.Leave;
@@ -24,10 +25,16 @@ public interface LeaveActivitDao {
 
 	public List<String> findLeaderByUserName(String userId);
 
-	public LeaveInfoEntity findUseridByProcessInstanceId(String processInstanceId);
+	public LeaveInfoEntity findLeaveInfoEntityByProId(String processInstanceId);
 	
 	public List<TSDepart> findDepartListByUserId(String userId);
 	
 	public TSRoleUser FindRoleByUserId(String userId);
+
+	public void UpdateBpmStatus(String statu, String processInstanceId);
+
+	public void UpdateComment(String comment, String processInstanceId);
+	
+	public void UpdateConcleLeave(Date concleLeave, String processInstanceId);
 
 }

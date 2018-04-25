@@ -16,6 +16,8 @@ import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jeecg.gpnu.entity.LeaveInfoEntity;
+
 @Service
 public class RejectTaskService {
 	
@@ -88,7 +90,7 @@ public class RejectTaskService {
 		
 	    //保存驳回的意见
 		taskEntity.setDescription(rejectMessage);  //设置驳回意见
-		
+		System.out.println("taskEntity.setDescription" + taskEntity.getDescription());
 		taskService.saveTask(taskEntity);
 		
 		//设定驳回标志 
@@ -106,7 +108,6 @@ public class RejectTaskService {
 		
 		//还原原活动节点流出项参数
 		currActivit.getOutgoingTransitions().addAll(hisPvmTransitionList);
-		
 		
 	}
 
